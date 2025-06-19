@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
-
+const fetch = require("node-fetch");
 const fileRoutes = require("./routes/files");
 const shortenerRoutes = require("./routes/shortener");
 const cleanExpiredFiles = require("./services/cleanupService");
@@ -33,6 +33,31 @@ app.use(checkOrigin);
 app.use("/uploads", express.static("uploads"));
 app.use("/api/files", fileRoutes);
 app.use("/", shortenerRoutes);
+
+
+// ping urls
+const urlsToPing = [
+  "https://synqtransfer.onrender.com",
+  "https://synqtransfer-frontend.onrender.com",
+  "https://synqapp.in"
+];
+
+function pingUrls() {
+  urlsToPing.forEach(async (url) => {
+    try {
+      const response = await fetch(url);
+      console.log(`✅ Pinged ${url} - Status: ${response.status}`);
+    } catch (err) {
+      console.error(`❌ Failed to ping ${url}:`, err.message);
+    }
+  });
+}
+
+// Ping every 30 seconds
+setInterval(pingUrls, 30 * 1000);
+
+// Optional: Ping once at server start
+pingUrls();
 
 const PORT = process.env.PORT || 5000;
 

@@ -8,7 +8,9 @@ exports.upload = async (req, res) => {
 
   try {
     const file = await fileService.saveFile(req.file);
-    const fullLink = `${req.protocol}://${req.get("host")}/api/files/${file.uuid}`;
+    const baseUrl = process.env.APP_BASE_URL || `${req.protocol}://${req.get("host")}`;
+    const fullLink = `${baseUrl}/api/files/${file.uuid}`;
+
     
     // ✨ Generate your branded short link
     const shortLink = await createShortLink(fullLink);
