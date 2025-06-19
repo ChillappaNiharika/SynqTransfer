@@ -37,8 +37,6 @@ app.use("/", shortenerRoutes);
 // ping urls
 // ping urls
 const urlsToPing = [
-  "https://synqtransfer.onrender.com",
-  "https://synqtransfer-frontend.onrender.com",
   "https://synqapp.in"
 ];
 
