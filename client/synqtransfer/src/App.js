@@ -5,6 +5,9 @@ import Dashboard from './pages/Dashboard';
 import Upload from './pages/Upload';
 import Privacy from './pages/Privacy';
 import logo from './assets/Logo without text.png';
+import Terms from './pages/Terms';
+import Contact from './pages/Contact';
+import AboutUs from './pages/About';
 
 function App() {
   return (
@@ -18,7 +21,8 @@ function App() {
           <div className="flex gap-4">
             <NavLink to="/" className={({isActive}) => isActive ? 'text-[#FFC93C]' : 'text-white hover:text-[#FFC93C]'}>Dashboard</NavLink>
             <NavLink to="/upload" className={({isActive}) => isActive ? 'text-[#FFC93C]' : 'text-white hover:text-[#FFC93C]'}>Upload</NavLink>
-            <NavLink to="/privacy" className={({isActive}) => isActive ? 'text-[#FFC93C]' : 'text-white hover:text-[#FFC93C]'}>Privacy Policy</NavLink>
+            {/* <NavLink to="/privacy" className={({isActive}) => isActive ? 'text-[#FFC93C]' : 'text-white hover:text-[#FFC93C]'}>Privacy Policy</NavLink>
+            <NavLink to="/terms" className={({isActive}) => isActive ? 'text-[#FFC93C]' : 'text-white hover:text-[#FFC93C]'}>Terms and Conditions</NavLink> */}
           </div>
         </nav>
 
@@ -26,6 +30,9 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about-us" element={<AboutUs />} />
         </Routes>
       </div>
     </Router>

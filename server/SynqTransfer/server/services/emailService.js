@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+import logo from '../public/images/Logo with text.png';
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -20,7 +21,7 @@ exports.sendFileEmail = async ({ to, from, title, message, link }) => {
         <div style="max-width: 600px; margin: auto; background-color: #FFFFFF; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
           <!-- Header -->
           <div style="background-color: #FF6F3C; padding: 20px; text-align: center;">
-            <img src="https://i.imgur.com/YOUR_LOGO_URL.png" alt="SynqTransfer" style="height: 40px;" />
+            <img src="cid:logo_cid" alt="SynqTransfer" style="height: 40px;" />
             <h1 style="color: white; margin: 0; font-size: 20px;">SynqTransfer</h1>
           </div>
 
@@ -45,6 +46,13 @@ exports.sendFileEmail = async ({ to, from, title, message, link }) => {
         </div>
       </div>
     `,
+    attachments: [
+    {
+      filename: 'logo.png',
+      path: './public/images/Logo with text.png',
+      cid: 'logo_cid' // same as in src="cid:logo_cid"
+    }
+  ]
   });
 
   console.log("📧 Email sent:", info.messageId);

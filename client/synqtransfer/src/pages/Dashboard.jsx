@@ -1,4 +1,3 @@
-// pages/Dashboard.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -105,25 +104,57 @@ const Dashboard = () => {
             </p>
           </div>
           <div className="flex flex-col gap-6 justify-center">
-  <div className="bg-[#1A1A1A] p-5 rounded-lg shadow">
-    <p className="italic text-sm mb-2">“SynqTransfer made it effortless to send our project files to clients securely and on time.”</p>
-    <p className="text-[#FFC93C] font-semibold">— Niharika Chillappa., UI/UX Developer</p>
-  </div>
-  <div className="bg-[#1A1A1A] p-5 rounded-lg shadow">
-    <p className="italic text-sm mb-2">“We no longer worry about file size or email restrictions. It's simply drag, drop, and done.”</p>
-    <p className="text-[#FFC93C] font-semibold">— Ashish Yelisetty., Full Stack Developer</p>
-  </div>
-  <div className="bg-[#1A1A1A] p-5 rounded-lg shadow">
-    <p className="italic text-sm mb-2">“The 24-hour expiry keeps our legal docs secure and out of unwanted hands.”</p>
-    <p className="text-[#FFC93C] font-semibold">— Kashyap., Lawyer</p>
-  </div>
-</div>
+            <div className="bg-[#1A1A1A] p-5 rounded-lg shadow">
+              <p className="italic text-sm mb-2">“SynqTransfer made it effortless to send our project files to clients securely and on time.”</p>
+              <p className="text-[#FFC93C] font-semibold">— Niharika Chillappa., UI/UX Developer</p>
+            </div>
+            <div className="bg-[#1A1A1A] p-5 rounded-lg shadow">
+              <p className="italic text-sm mb-2">“We no longer worry about file size or email restrictions. It's simply drag, drop, and done.”</p>
+              <p className="text-[#FFC93C] font-semibold">— Ashish Yelisetty., Full Stack Developer</p>
+            </div>
+            <div className="bg-[#1A1A1A] p-5 rounded-lg shadow">
+              <p className="italic text-sm mb-2">“The 24-hour expiry keeps our legal docs secure and out of unwanted hands.”</p>
+              <p className="text-[#FFC93C] font-semibold">— Kashyap., Lawyer</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Educational SEO Section */}
+      <section className="py-16 px-6 max-w-6xl mx-auto text-[#F9F9F9]">
+        <h2 className="text-3xl font-bold text-center text-[#FFC93C] mb-10">Learn More About File Transfer Security</h2>
+        <div className="space-y-6 text-sm leading-relaxed">
+          <p>
+            File transfer is a daily need in modern digital workspaces. From creative teams to enterprise-level
+            corporations, sending large files quickly and safely can make or break productivity.
+          </p>
+          <p>
+            SynqTransfer simplifies this with secure upload, instant sharing, and 24-hour expiry—all without
+            mandatory signups. Whether you're sending gigabytes of design files, confidential contracts, or personal
+            data, your content is encrypted and transient.
+          </p>
+          <p>
+            Using end-to-end encryption and industry-standard protocols, your data remains protected from
+            interception or leaks. In fact, many professionals trust SynqTransfer over traditional cloud drives
+            for quick, one-time delivery needs.
+          </p>
+          <p>
+            Avoid clutter, save time, and increase your efficiency with our no-login-required file sharing.
+          </p>
+          <ul className="list-disc pl-5">
+            <li>Perfect for remote teams and freelancers needing to share files securely.</li>
+            <li>Useful for legal firms, HR departments, and educators who value file expiry.</li>
+            <li>No need to worry about permanent storage—your data is cleared automatically.</li>
+          </ul>
+          <p>
+            Have questions? Visit our Help Center or reach out via our contact form. Start your first upload today and experience the future of secure file sharing.
+          </p>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="bg-[#1A1A1A] text-center py-6 mt-12 text-sm text-[#7D7D7D]">
-        © {new Date().getFullYear()} SynqTransfer. All rights reserved. | <a href="/privacy" className="underline">Privacy Policy</a>
+        © {new Date().getFullYear()} SynqTransfer. All rights reserved. | <a href="/privacy" >Privacy Policy</a> | <a href="/terms" >Terms and Conditions</a> | <a href="/contact" >ContactUs</a> | <a href="/about-us" >AboutUs</a>
       </footer>
     </div>
   );

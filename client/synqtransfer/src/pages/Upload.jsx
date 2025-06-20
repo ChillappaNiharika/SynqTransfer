@@ -1,4 +1,3 @@
-// pages/Upload.jsx
 import React, { useState } from 'react';
 import UploadForm from '../components/UploadForm';
 import { motion } from 'framer-motion';
@@ -78,6 +77,36 @@ const Upload = () => {
         </div>
       </section>
 
+      {/* Educational SEO Section */}
+      <section className="mt-20 max-w-5xl mx-auto">
+        <h2 className="text-2xl font-bold text-[#FFC93C] text-center mb-6">Learn More About File Sharing</h2>
+        <div className="space-y-6 text-sm leading-relaxed text-[#232323]">
+          <p>
+            File sharing is an essential part of today's digital workflows. Whether you're a designer sharing drafts,
+            a developer distributing builds, or a lawyer exchanging contracts—having a reliable platform like
+            SynqTransfer is vital. Our platform ensures your data is secure and reaches its destination promptly.
+          </p>
+          <p>
+            There are many tools online that allow file sharing, but very few prioritize both **simplicity** and **security**.
+            At SynqTransfer, we designed the interface to be minimal, requiring no login for basic transfers,
+            while ensuring best-in-class encryption behind the scenes.
+          </p>
+          <p>
+            You can use SynqTransfer to:
+          </p>
+          <ul className="list-disc pl-5">
+            <li>Send large video or image files to clients.</li>
+            <li>Distribute school or office documents.</li>
+            <li>Send compressed archives (.zip/.rar) to team members.</li>
+            <li>Securely send legal or confidential documents.</li>
+          </ul>
+          <p>
+            Ready to get started? Click the <strong>Continue</strong> button above to upload your files now.
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
       <footer className="text-center mt-20 text-[#7D7D7D] text-sm">
         © {new Date().getFullYear()} SynqTransfer. Secure File Sharing Made Simple.
       </footer>

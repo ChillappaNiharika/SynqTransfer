@@ -69,6 +69,38 @@ const Privacy = () => {
           </p>
         </section>
 
+        <section className="mb-6">
+          <h2 className="text-xl font-semibold text-[#FFC93C] mb-2">8. Frequently Asked Questions</h2>
+          <ul className="list-disc pl-5 text-sm text-[#F9F9F9] space-y-2">
+            <li>
+              <strong>Can SynqTransfer see my files?</strong><br />
+              No. Your files are encrypted during upload and are deleted within 24 hours. We don’t access or read your data.
+            </li>
+            <li>
+              <strong>What happens after 24 hours?</strong><br />
+              Files are permanently deleted from our servers and cannot be recovered.
+            </li>
+            <li>
+              <strong>How do you protect my email address?</strong><br />
+              Email data is used only for delivery and never shared or reused. All transmissions are secured with encryption.
+            </li>
+          </ul>
+        </section>
+
+        <section className="mb-6">
+          <h2 className="text-xl font-semibold text-[#FFC93C] mb-2">9. Compliance</h2>
+          <p className="text-sm text-[#F9F9F9]">
+            We follow applicable data protection laws, including GDPR and CCPA. Users can request data deletion or opt out of any data collection beyond essential functionality.
+          </p>
+        </section>
+
+        <section className="mb-6">
+          <h2 className="text-xl font-semibold text-[#FFC93C] mb-2">10. Updates to Policy</h2>
+          <p className="text-sm text-[#F9F9F9]">
+            Our Privacy Policy may be updated periodically. The date of the latest revision will always be displayed at the top. Users will be notified of significant changes.
+          </p>
+        </section>
+
         <footer className="pt-6 text-sm text-[#777] border-t border-[#2D2D2D] mt-8">
           &copy; {new Date().getFullYear()} SynqTransfer. All rights reserved.
         </footer>
