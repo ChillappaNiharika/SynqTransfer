@@ -34,11 +34,8 @@ exports.upload = async (req, res) => {
 
     const file = await fileService.saveFile(zipFile);
     const baseUrl = process.env.APP_BASE_URL || `${req.protocol}://${req.get("host")}`;
-    const baseMaskedUrl = process.env.MASKED_BASE_URL || `${req.protocol}://${req.get("host")}/download`;
     const fullLink = `${baseUrl}/api/files/${file.uuid}`;
-    const { slug, shortLink } = await createShortLink(fullLink, req);
-    const maskedLink = `${baseMaskedUrl}/${slug}`;
-
+    const shortLink = await createShortLink(fullLink, req); // Pass req
 
     console.log("Base URL:", `${req.protocol}://${req.get("host")}`);
     console.log("Short Link:", shortLink);
@@ -50,15 +47,11 @@ exports.upload = async (req, res) => {
         from: fromEmail,
         title,
         message,
-        link: maskedLink,
+        link: shortLink,
       });
-      res.json({ message: "Email sent.", file: maskedLink });
+      res.json({ message: "Email sent.", file: shortLink });
     } else {
-      return res.json({
-    message: "Link generated",
-    file: maskedLink,     // masked for display
-    realLink: shortLink,  // optional: internal use
-  });
+      res.json({ message: "Link generated.", file: shortLink });
     }
   } catch (err) {
     console.error("Upload error:", err);
