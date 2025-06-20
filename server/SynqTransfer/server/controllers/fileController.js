@@ -36,8 +36,9 @@ exports.upload = async (req, res) => {
     const baseUrl = process.env.APP_BASE_URL || `${req.protocol}://${req.get("host")}`;
     const baseMaskedUrl = process.env.MASKED_BASE_URL || `${req.protocol}://${req.get("host")}/download`;
     const fullLink = `${baseUrl}/api/files/${file.uuid}`;
-    const shortLink = await createShortLink(fullLink, req); // Pass req
+    const { slug, shortLink } = await createShortLink(fullLink, req);
     const maskedLink = `${baseMaskedUrl}/${slug}`;
+
 
     console.log("Base URL:", `${req.protocol}://${req.get("host")}`);
     console.log("Short Link:", shortLink);
