@@ -6,6 +6,7 @@ const fileRoutes = require("./routes/files");
 const shortenerRoutes = require("./routes/shortener");
 const cleanExpiredFiles = require("./services/cleanupService");
 const checkOrigin = require("./middlewares/originCheck");
+const contactRoutes = require('./routes/contactRoutes');
 mongoose.connect(process.env.MONGO_URI).then(() => console.log("MongoDB connected"));
 
 const app = express();
@@ -31,28 +32,7 @@ app.use(checkOrigin);
 app.use("/uploads", express.static("uploads"));
 app.use("/api/files", fileRoutes);
 app.use("/", shortenerRoutes);
-
-
-// ping urls
-// ping urls
-const urlsToPing = [
-  "https://synqapp.in"
-];
-
-function pingUrls() {
-  urlsToPing.forEach(async (url) => {
-    try {
-      const response = await fetch(url);
-      console.log(`✅ Pinged ${url} - Status: ${response.status}`);
-    } catch (err) {
-      console.error(`❌ Failed to ping ${url}:`, err.message);
-    }
-  });
-}
-
-// Ping every 30 seconds
-setInterval(pingUrls, 30 * 1000);
-pingUrls();
+app.use('/api', contactRoutes);
 
 const PORT = process.env.PORT || 5000;
 
