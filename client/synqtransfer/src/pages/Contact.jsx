@@ -66,11 +66,14 @@ const Contact = () => {
             required
           ></textarea>
           <button
-            type="submit"
-            className="bg-[#FF6F3C] hover:bg-[#e55a24] text-white font-semibold px-6 py-2 rounded"
-          >
-            {status === 'loading' ? 'Sending...' : 'Send Message'}
-          </button>
+                type="submit"
+                disabled={status === 'loading'}
+                className={`bg-[#FF6F3C] hover:bg-[#e55a24] text-white font-semibold px-6 py-2 rounded ${
+                    status === 'loading' ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                >
+                {status === 'loading' ? 'Sending...' : 'Send Message'}
+                </button>
           {status === 'success' && <p className="text-green-400 text-sm">Message sent successfully!</p>}
           {status === 'error' && <p className="text-red-400 text-sm">Failed to send message. Try again later.</p>}
         </form>
