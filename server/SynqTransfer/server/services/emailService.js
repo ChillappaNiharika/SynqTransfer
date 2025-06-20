@@ -1,10 +1,9 @@
 const nodemailer = require("nodemailer");
-import logo from '../public/images/Logo with text.png';
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: process.env.SMTP_PORT || 587,
-  secure: true,
+  secure: true, // use false if port is 587, true if port is 465
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
@@ -47,12 +46,12 @@ exports.sendFileEmail = async ({ to, from, title, message, link }) => {
       </div>
     `,
     attachments: [
-    {
-      filename: 'logo.png',
-      path: './public/images/Logo with text.png',
-      cid: 'logo_cid' // same as in src="cid:logo_cid"
-    }
-  ]
+      {
+        filename: 'logo.png',
+        path: './public/images/Logo with text.png',
+        cid: 'logo_cid'
+      }
+    ]
   });
 
   console.log("📧 Email sent:", info.messageId);
