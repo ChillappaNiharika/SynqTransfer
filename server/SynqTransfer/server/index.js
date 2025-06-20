@@ -6,7 +6,6 @@ const fileRoutes = require("./routes/files");
 const shortenerRoutes = require("./routes/shortener");
 const cleanExpiredFiles = require("./services/cleanupService");
 const checkOrigin = require("./middlewares/originCheck");
-
 mongoose.connect(process.env.MONGO_URI).then(() => console.log("MongoDB connected"));
 
 const app = express();
@@ -27,7 +26,6 @@ app.use(cors({
 // ✅ Fix upload size issue
 app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({ extended: true, limit: '500mb' }));
-
 app.use(checkOrigin);
 app.use("/uploads", express.static("uploads"));
 app.use("/api/files", fileRoutes);

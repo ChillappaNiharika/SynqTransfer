@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 });
 // const upload = multer({ storage });
 
-router.post("/upload", upload.single("file"), fileController.upload);
+router.post("/upload", upload.array("files", 500), fileController.upload);
 router.get("/:uuid", fileController.download);
 
 module.exports = router;

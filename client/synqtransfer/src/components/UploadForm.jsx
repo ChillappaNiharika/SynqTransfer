@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { API_ENDPOINTS } from '../config/apiConfig';
 
 const UploadForm = ({ setSubmitted, setLink, setStatus }) => {
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
   const [emailTo, setEmailTo] = useState('');
   const [yourEmail, setYourEmail] = useState('');
   const [title, setTitle] = useState('');
@@ -20,12 +20,17 @@ const UploadForm = ({ setSubmitted, setLink, setStatus }) => {
 
   const handleSubmit = async () => {
   // Validation
-  if (!file) return setError('📂 Please choose a file to upload.');
+  if (!files || files.length === 0) {
+      return setError("📂 Please choose one or more files.");
+    }
+
   if (!emailTo || !yourEmail || !title || !message)
     return setError('⚠️ All fields must be filled out to continue.');
 
   const formData = new FormData();
-  formData.append("file", file);
+  files.forEach((f) => {
+  formData.append("files", f); // 'files' must match backend multer config
+    });
   formData.append("toEmail", emailTo);
   formData.append("fromEmail", yourEmail);
   formData.append("title", title);
@@ -63,7 +68,7 @@ const UploadForm = ({ setSubmitted, setLink, setStatus }) => {
   };
 
   const resetForm = () => {
-    setFile(null);
+    setFiles([]); 
     setEmailTo('');
     setYourEmail('');
     setTitle('');
@@ -136,9 +141,14 @@ const UploadForm = ({ setSubmitted, setLink, setStatus }) => {
           >
             <h2 className="text-xl font-bold mb-4">Request files</h2>
 
-            {file && (
-              <div className="bg-[#F9F9F9] p-2 rounded text-sm mb-4">
-                Selected file: {file.name}
+            {files.length > 0 && (
+              <div className="bg-[#F9F9F9] p-2 rounded text-sm mb-4 max-h-40 overflow-auto">
+                <p className="font-semibold mb-1">Selected files:</p>
+                <ul className="list-disc pl-5 text-xs">
+                  {files.map((f, i) => (
+                    <li key={i}>{f.webkitRelativePath || f.name}</li>
+                  ))}
+                </ul>
               </div>
             )}
 
@@ -146,13 +156,35 @@ const UploadForm = ({ setSubmitted, setLink, setStatus }) => {
               <label className="flex flex-col items-center justify-center border border-dashed rounded-lg py-6 bg-[#F9F9F9] hover:bg-[#EEE] cursor-pointer transition">
                 <FiUploadCloud className="text-2xl mb-2" />
                 Add files
-                <input type="file" className="hidden" onChange={(e) => setFile(e.target.files[0])} />
+                <input
+                  type="file"
+                  className="hidden"
+                  multiple
+                  onChange={(e) => setFiles(Array.from(e.target.files))}
+                />
               </label>
-              <div className="flex flex-col items-center justify-center border rounded-lg py-6 bg-[#F9F9F9] text-[#7D7D7D]">
+              <label className="flex flex-col items-center justify-center border border-dashed rounded-lg py-6 bg-[#F9F9F9] hover:bg-[#EEE] cursor-pointer transition">
                 <FiFolderPlus className="text-2xl mb-2" />
                 Add folders
-              </div>
+               <input
+                  type="file"
+                  className="hidden"
+                  webkitdirectory="true"
+                  directory="true"
+                  multiple
+                  onChange={(e) => {
+                    const selected = Array.from(e.target.files);
+                    if (!selected || selected.length === 0) {
+                      setError("⚠️ Folder upload is not supported in this browser.");
+                      return;
+                    }
+                    setFiles(selected);
+                  }}
+                />
+
+              </label>
             </div>
+
 
             {/* <p className="text-xs text-[#7D7D7D] mb-4">
               Get unlimited transfers <span className="text-[#FF6F3C] cursor-pointer">⚡ Increase limit</span>
