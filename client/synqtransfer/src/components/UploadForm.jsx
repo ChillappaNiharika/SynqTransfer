@@ -53,6 +53,7 @@ const UploadForm = ({ setSubmitted, setLink, setStatus }) => {
     setFileURL(res.data.file); // ✅ fix: use res.data.file instead of res.data.link
     setShowSuccess(true);
     setProgress(0);
+    setError('');
   } catch (err) {
     setLoading(false);
     setError('❌ Upload failed. Please try again.');

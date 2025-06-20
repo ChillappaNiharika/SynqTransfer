@@ -4,10 +4,13 @@ const dotenv = require("dotenv");
 
 dotenv.config(); // Make sure this is called once at app startup
 
-exports.createShortLink = async (originalUrl) => {
+// utils/shortner.js
+exports.createShortLink = async (originalUrl, req) => {
   const slug = nanoid(7);
   await ShortLink.create({ slug, originalUrl });
 
-  const baseUrl = process.env.APP_BASE_URL ; // fallback if .env missing
+  // Prefer .env APP_BASE_URL, fallback to request host
+  const baseUrl = process.env.APP_BASE_URL || `${req.protocol}://${req.get("host")}`;
   return `${baseUrl}/${slug}`;
 };
+

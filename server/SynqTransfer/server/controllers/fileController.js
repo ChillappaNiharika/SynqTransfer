@@ -35,7 +35,7 @@ exports.upload = async (req, res) => {
     const file = await fileService.saveFile(zipFile);
     const baseUrl = process.env.APP_BASE_URL || `${req.protocol}://${req.get("host")}`;
     const fullLink = `${baseUrl}/api/files/${file.uuid}`;
-    const shortLink = await createShortLink(fullLink);
+    const shortLink = await createShortLink(fullLink, req); // Pass req
 
     if (option === "email") {
       await emailService.sendFileEmail({
