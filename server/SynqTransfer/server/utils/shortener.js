@@ -9,7 +9,7 @@ exports.createShortLink = async (originalUrl, req) => {
   const slug = nanoid(7);
   await ShortLink.create({ slug, originalUrl });
 
-  const baseUrl = process.env.APP_BASE_URL || `${req.protocol}://${req.get("host")}`;
-  const shortLink = `${baseUrl}/${slug}`;
-  return { slug, shortLink }; // return both
+  // ✅ Force dynamic host from req (ignore .env for now)
+  const baseUrl = `${req.protocol}://${req.get("host")}`;
+  return `${baseUrl}/${slug}`;
 };
