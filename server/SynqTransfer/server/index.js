@@ -55,7 +55,7 @@ pingUrls();
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
   setInterval(cleanExpiredFiles, 60 * 60 * 1000); // run every hour
 });
