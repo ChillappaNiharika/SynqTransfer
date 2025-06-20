@@ -7,6 +7,7 @@ const shortenerRoutes = require("./routes/shortener");
 const cleanExpiredFiles = require("./services/cleanupService");
 const checkOrigin = require("./middlewares/originCheck");
 const contactRoutes = require('./routes/contactRoutes');
+const path = require('path');
 mongoose.connect(process.env.MONGO_URI).then(() => console.log("MongoDB connected"));
 
 const app = express();
@@ -33,6 +34,14 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/files", fileRoutes);
 app.use("/", shortenerRoutes);
 app.use('/api', contactRoutes);
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'templates'));
+
+// Route to render welcome.ejs
+app.get('/', (req, res) => {
+  res.render('welcome');
+});
 
 const PORT = process.env.PORT || 5000;
 
