@@ -1,6 +1,7 @@
 // pages/Contact.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_ENDPOINTS } from '../config/apiConfig';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -14,7 +15,7 @@ const Contact = () => {
     e.preventDefault();
     setStatus('loading');
     try {
-      const response = await axios.post('/api/contact', formData);
+      const response = await axios.post(API_ENDPOINTS.CONTACT, formData);
       if (response.data.success) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '' });

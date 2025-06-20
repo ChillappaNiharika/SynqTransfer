@@ -6,6 +6,7 @@ const BASE_URL = 'https://synqtransfer.onrender.com/api';
 
 export const API_ENDPOINTS = {
   UPLOADFILE: `${BASE_URL}/files/upload`,
+  CONTACT: `${BASE_URL}/contact`,
 
 };
 
