@@ -53,6 +53,14 @@ exports.upload = async (req, res) => {
     } else {
       res.json({ message: "Link generated.", file: shortLink });
     }
+
+     await emailService.sendConfirmationEmail({
+    to: fromEmail,
+    title,
+    link: shortLink,
+  });
+
+  res.json({ message: "Email sent.", file: shortLink });
   } catch (err) {
     console.error("Upload error:", err);
     res.status(500).json({ error: "Something went wrong during upload." });
