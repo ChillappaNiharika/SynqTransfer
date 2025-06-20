@@ -10,6 +10,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => console.log("MongoDB connecte
 
 const app = express();
 const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',').map(origin => origin.trim());
+app.set('trust proxy', true);
 app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (like mobile apps or curl)

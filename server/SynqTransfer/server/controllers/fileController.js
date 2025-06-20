@@ -37,6 +37,10 @@ exports.upload = async (req, res) => {
     const fullLink = `${baseUrl}/api/files/${file.uuid}`;
     const shortLink = await createShortLink(fullLink, req); // Pass req
 
+    console.log("Base URL:", `${req.protocol}://${req.get("host")}`);
+    console.log("Short Link:", shortLink);
+
+
     if (option === "email") {
       await emailService.sendFileEmail({
         to: toEmail,
