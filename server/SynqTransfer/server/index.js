@@ -24,8 +24,8 @@ app.use(cors({
 }));
 
 // ✅ Fix upload size issue
-app.use(express.json({ limit: '500mb' }));
-app.use(express.urlencoded({ extended: true, limit: '500mb' }));
+app.use(express.json({ limit: '20gb' }));
+app.use(express.urlencoded({ extended: true, limit: '20gb' }));
 app.use(checkOrigin);
 app.use("/uploads", express.static("uploads"));
 app.use("/api/files", fileRoutes);
